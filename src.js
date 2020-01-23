@@ -196,7 +196,7 @@ $(document).ready(function() {
 });
 
 /*
- // Mark certain elements as display: none
+ // Mark certain elements as display: noneawefwaefwefefefefefefefefeefefefefefefe
  var noshowemts, tagstohide = ['b','h4'];
  for (var l = 0, thistag; thistag = tagstohide[l];l++) {
  noshowemts = body.getElementsByTagName(thistag);
