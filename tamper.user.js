@@ -11,6 +11,8 @@
 // @run-at       document-start
 // ==/UserScript==
 
+// Test 1
+
 (function() {
     'use strict';
 
