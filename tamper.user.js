@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Collapsable Duolingo Comments
 // @namespace    https://github.com/jsoldi
-// @version      0.2
+// @version      0.3
 // @description  Enable comment collapsing in Duolingo comments
 // @author       juan soldi
 // @match        https://forum.duolingo.com/comment/*
@@ -32,14 +32,10 @@
 			});
 
 			Object.defineProperty(div.collapsing, 'collapsed', {
-				get: () => link.innerText === '[+++]',
+				get: () => link.innerText === '[+]',
 				set: function(value) {
 					if (div.collapsing.collapsed !== value) {
-
-						if (window.paralelo)
-							debugger;
-
-						link.innerText = value ? '[+++]' : '[-]';
+						link.innerText = value ? '[+]' : '[-]';
 						div.querySelector('div[itemprop=text]').style.display = value ? 'none' : '';
 						div.querySelector('div > span > div > ul').style.display = value ? 'none' : '';
 
