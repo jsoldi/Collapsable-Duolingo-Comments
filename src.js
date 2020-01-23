@@ -6,6 +6,9 @@
 // @author       juan soldi
 // @match        https://forum.duolingo.com/comment/*
 // @grant        none
+// @updateURL    https://github.com/jsoldi/Collapsable-Duolingo-Comments/blame/master/src.js
+// @downloadURL  https://github.com/jsoldi/Collapsable-Duolingo-Comments/blame/master/src.js
+// @run-at       document-start
 // ==/UserScript==
 
 (function() {
