@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Collapsable Duolingo Comments
 // @namespace    https://github.com/jsoldi
-// @version      0.3
+// @version      0.4
 // @description  Enable comment collapsing in Duolingo comments
 // @author       juan soldi
 // @match        https://forum.duolingo.com/comment/*
 // @grant        none
-// @updateURL    https://raw.githubusercontent.com/jsoldi/Collapsable-Duolingo-Comments/master/src.js
-// @downloadURL  https://raw.githubusercontent.com/jsoldi/Collapsable-Duolingo-Comments/master/src.js
+// @updateURL    https://github.com/jsoldi/Collapsable-Duolingo-Comments/raw/master/tamper.user.js
+// @downloadURL  https://github.com/jsoldi/Collapsable-Duolingo-Comments/raw/master/tamper.user.js
 // @run-at       document-start
 // ==/UserScript==
 
