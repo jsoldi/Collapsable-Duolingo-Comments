@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Collapsable Duolingo Comments
-// @namespace    http://tampermonkey.net/
+// @namespace    https://github.com/jsoldi
 // @version      0.2
 // @description  Enable comment collapsing in Duolingo comments
 // @author       juan soldi
