@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Collapsable Duolingo Comments
 // @namespace    https://github.com/jsoldi
-// @version      0.4
+// @version      0.5
 // @description  Enable comment collapsing in Duolingo comments
 // @author       juan soldi
 // @match        https://forum.duolingo.com/comment/*
@@ -10,8 +10,6 @@
 // @downloadURL  https://github.com/jsoldi/Collapsable-Duolingo-Comments/raw/master/tamper.user.js
 // @run-at       document-start
 // ==/UserScript==
-
-// Test 1
 
 (function() {
     'use strict';
