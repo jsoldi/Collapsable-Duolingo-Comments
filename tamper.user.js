@@ -1,10 +1,10 @@
 // ==UserScript==
 // @name         Collapsable Duolingo Comments
 // @namespace    https://github.com/jsoldi
-// @version      0.5
+// @version      0.6
 // @description  Enable comment collapsing in Duolingo comments
 // @author       juan soldi
-// @match        https://forum.duolingo.com/comment/*
+// @match        https://forum.duolingo.com/*
 // @grant        none
 // @updateURL    https://github.com/jsoldi/Collapsable-Duolingo-Comments/raw/master/tamper.user.js
 // @downloadURL  https://github.com/jsoldi/Collapsable-Duolingo-Comments/raw/master/tamper.user.js
@@ -21,7 +21,7 @@
 			var link = document.createElement('a');
 			author.classList.forEach(c => link.classList.add(c))
 			link.innerText = '[-]';
-			link.href = 'javascript:void(0)';		
+			link.href = 'javascript:void(0)';
 			author.parentElement.insertBefore(link, author);
 
 			Object.defineProperty(div.collapsing, 'margin', {
@@ -41,7 +41,7 @@
 
 						if (value) {
 							for (var sibling = div.nextElementSibling; sibling; sibling = sibling.nextElementSibling) {
-								if (div.collapsing.margin < sibling.collapsing.margin) 
+								if (div.collapsing.margin < sibling.collapsing.margin)
 									sibling.style.display = 'none';
 								else
 									break;
@@ -73,21 +73,14 @@
 		}
 	};
 
-	var setupAll = function() {
-		document.querySelectorAll('div.uMmEI').forEach(div => setupDiv(div));
-	};
+	var needsUpdate = true;
 
-	var interval = setInterval(function () { 
-		if (document.querySelector('div.uMmEI')) {
-			clearInterval(interval);
+	new MutationObserver(() => needsUpdate = true).observe(document.documentElement, { childList: true, subtree: true });
 
-			var callback = function(mutationsList, observer) {
-				if (Array.from(mutationsList).find(m => m.type === 'childList')) 
-					setupAll();	
-			};
-
-			new MutationObserver(callback).observe(document.querySelector('div.uMmEI').parentElement, { childList: true });
-			setupAll();
-		}
-	}, 250);
+	setInterval(function () {
+		if (needsUpdate) {
+            document.querySelectorAll('div.uMmEI').forEach(div => setupDiv(div));
+            needsUpdate = false;
+        }
+	}, 500);
 })();
