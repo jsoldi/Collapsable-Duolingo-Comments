@@ -17,12 +17,17 @@
 	var setupDiv = function(div) {
 		if (!div.collapsing) {
 			div.collapsing = {};
-			var author = div.querySelector('a[itemprop=author]');
+			var author = div.querySelector('a[itemprop=author]') || Array.from(div.querySelectorAll('div[class^=_]')).find(a => !a.children.length && /^\[.+\]$/.test(a.innerText));
 			var link = document.createElement('a');
 			author.classList.forEach(c => link.classList.add(c))
 			link.innerText = '[-]';
 			link.href = 'javascript:void(0)';
 			author.parentElement.insertBefore(link, author);
+
+			var updateElement = function(element, hidden) {
+				if (element)
+					element.style.display = hidden ? 'none' : '';
+			};
 
 			Object.defineProperty(div.collapsing, 'margin', {
 				get: function() {
@@ -36,8 +41,9 @@
 				set: function(value) {
 					if (div.collapsing.collapsed !== value) {
 						link.innerText = value ? '[+]' : '[-]';
-						div.querySelector('div[itemprop=text]').style.display = value ? 'none' : '';
-						div.querySelector('div > span > div > ul').style.display = value ? 'none' : '';
+						updateElement(div.querySelector('div[itemprop=text]'), value);
+						updateElement(div.querySelector('div > span > div > ul'), value);
+						updateElement((div.querySelector('span > a[href^="https://www.duolingo.com/?purchasePlus"]') || {}).parentElement, value);
 
 						if (value) {
 							for (var sibling = div.nextElementSibling; sibling; sibling = sibling.nextElementSibling) {
@@ -71,16 +77,16 @@
 
 			link.addEventListener('click', () => div.collapsing.collapsed = !div.collapsing.collapsed);
 		}
-	};
+	};    
+    
+    var needsUpdate = true;
 
-	var needsUpdate = true;
+    new MutationObserver(() => needsUpdate = true).observe(document.documentElement, { childList: true, subtree: true });
 
-	new MutationObserver(() => needsUpdate = true).observe(document.documentElement, { childList: true, subtree: true });
-
-	setInterval(function () {
-		if (needsUpdate) {
+    setInterval(function () {
+        if (needsUpdate) {
             document.querySelectorAll('div.uMmEI').forEach(div => setupDiv(div));
             needsUpdate = false;
         }
-	}, 500);
+    }, 500);
 })();
